@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import FooterOne from '../components/FooterOne';
 import FooterTwo from '../components/FooterTwo';
 
@@ -13,4 +12,4 @@ class Footer extends Component {
 	) 
   }
 }
-export default connect(null, null)(Footer);
+export default Footer;

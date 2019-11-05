@@ -3,8 +3,8 @@ import Admin from "./containers/Admin";
 
 export default [
 	{
-		path: "/admin",
+		path: "/admin/:path",
 		exact: true,
 		component: () => <Admin />
-	},
+	}
 ];

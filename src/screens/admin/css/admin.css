@@ -3,3 +3,19 @@ background-color: #fff;box-shadow: 0px 5px 15px rgba(0,0,0,.5);
 padding: 60px 20px}
 body{background-color: #f5f5f5}
 .inner-margin{margin-top: 25px}
+.adminnav-header{padding: 10px 0px 5px 0px;font-size: 25px;color: #fff;cursor: pointer; letter-spacing: 4px;}
+.adminnav-link{color: #fff;}
+.adminnav-link:hover,.adminnav-link:focus,.adminnav-link:active{color: #fff;
+background-color: transparent!important}
+.admin-dropdown a{text-decoration: none;color: #000;}
+.admin-dropdown li:hover,.admin-dropdown li.active{background-color: #fed430;
+color: #000;}
+.admin-dropdown li{list-style: none;padding: 5px 10px;margin: 5px}
+.admin-sidebar{height: 100vh;overflow-y: auto;background-color: #f5f5f5;box-shadow: 0px 8px 10px #aaa;
+font-size: 14px;padding: 0px!important;}
+.adminfooter-div{position: fixed;bottom: 0px;background-color: #3a4754;color: #8b9198;padding: 15px;}
+.admin-dropdown{padding: 0px!important;margin-top: 30px}
+.service-back{background-color: #fff;margin-top: 20px;padding: 15px;min-height: 70vh}
+.service-back h4{font-weight: bold;}
+.modal-btn{background-color: #0d52d6;color: #fff;font-weight: 700;}
+/*.rt-th{background-color: #f5f5f5;}*/

@@ -1,15 +1,22 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
-const HeaderTwo = ({}) => {
+const HeaderTwo = (props) => {
   return (
     <nav className="navbar navbar2">
 	  <div className="container-fluid nav-back2">
 	    <ul className="nav navbar-nav">
-	      <li className="active"><Link className="nav-link2" to="#">Service 1</Link></li>
-	      <li><Link className="nav-link2" to="#">Service 2</Link></li>
-	      <li><Link className="nav-link2" to="#">Service 3</Link></li>	
+	      {
+          props.serviceData.map((data,index)=>{
+            return(
+              <li className="active" key={index}>
+                <a className="nav-link2" href="#" data-toggle="modal" data-target="#formModal" data-id={data.ID} onClick={props.getServiceId}>{data.NAME}</a>
+              </li>  
+            )
+          })
+        }	
 	    </ul>
 	  </div>
 	</nav>
