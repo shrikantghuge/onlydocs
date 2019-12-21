@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutMarkup = ({}) => {
+const AboutMarkup = () => {
   return (
     <div>About</div>
   );

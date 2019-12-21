@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+//import 'bootstrap/dist/js/bootstrap.min.js';
 
 const HeaderTwo = (props) => {
   return (
@@ -12,7 +11,7 @@ const HeaderTwo = (props) => {
           props.serviceData.map((data,index)=>{
             return(
               <li className="active" key={index}>
-                <a className="nav-link2" href="#" data-toggle="modal" data-target="#formModal" data-id={data.ID} onClick={props.getServiceId}>{data.NAME}</a>
+                <a className="nav-link2" href="/#" data-toggle="modal" data-target="#formModal" data-id={data.ID} onClick={props.getServiceId}>{data.NAME+'('+data.ID+')'}</a>
               </li>  
             )
           })

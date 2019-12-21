@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HeaderOne from '../components/HeaderOne';
 import HeaderTwo from '../components/HeaderTwo';
-import HeaderThree from '../components/HeaderThree';
 import axios from 'axios';
 import $ from "jquery";
 
@@ -58,9 +57,6 @@ class Header extends Component {
             null
           }
     		</div>
-    		{/*<div className="visible-xs">
-    		  <HeaderThree />
-    		</div>*/}
   	  </header>
   	) 
   }

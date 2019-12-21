@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Services= ({}) => {
+const Services= () => {
   return (
     <React.Fragment>
       <h1 className="service-head text-center">

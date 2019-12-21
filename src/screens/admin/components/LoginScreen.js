@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const LoginScreen= ({}) => {
+const LoginScreen= () => {
   return (
     <React.Fragment>
       <div className="outer-wrapper">

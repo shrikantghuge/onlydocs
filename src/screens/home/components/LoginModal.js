@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+//import 'bootstrap/dist/js/bootstrap.min.js';
 import axios from 'axios';
 import validate from 'jquery-validation';
 import $ from "jquery";

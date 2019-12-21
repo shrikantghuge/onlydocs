@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+//import 'bootstrap/dist/js/bootstrap.min.js';
 import axios from 'axios';
 import validate from 'jquery-validation';
 import $ from "jquery";
@@ -198,17 +198,17 @@ class AddService extends Component {
 
     if(this.state.serviceData&&this.state.serviceData.length>0){
       this.state.serviceData.map((data,index)=>{
-        dataArray.push({
+        return dataArray.push({
           "srno"          : index+1,
           "serviceName"   : data.NAME,
           "duration"      : data.DURATION,
           "price"         : data.PRICE,
           "action"        : <div>
-            <a className="" href="#" data-toggle="modal" data-target="#editModal" data-id={data.ID} onClick={this.handleEditBtn.bind(this)} >
+            <a className="" href="/#" data-toggle="modal" data-target="#editModal" data-id={data.ID} onClick={this.handleEditBtn.bind(this)} >
               <i className="glyphicon glyphicon-edit"></i>
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <a className="" href="#" data-toggle="modal" data-target="#deleteModal" data-id={data.ID} onClick={this.handleDeleteBtn.bind(this)}>
+            <a className="" href="/#" data-toggle="modal" data-target="#deleteModal" data-id={data.ID} onClick={this.handleDeleteBtn.bind(this)}>
               <i className="glyphicon glyphicon-trash"></i>
             </a>
           </div>

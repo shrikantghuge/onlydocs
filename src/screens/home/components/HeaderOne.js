@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+//import 'bootstrap/dist/js/bootstrap.min.js';
 
 const HeaderOne = (props) => {
   return (
@@ -17,7 +17,7 @@ const HeaderOne = (props) => {
 	      {
 	      	props.token?
 	      	<li className="dropdown">
-	      	  <a className="nav-link1 dropdown-toggle" href="#" data-toggle="dropdown"><span className="glyphicon glyphicon-user"></span> Logged In</a>
+	      	  <a className="nav-link1 dropdown-toggle" href="/#" data-toggle="dropdown"><span className="glyphicon glyphicon-user"></span> Logged In</a>
 	      	  <ul className="dropdown-menu user-dropdown">
 	      	  	{
 	      	  	  (props.mobile==='9096758067'||props.mobile==='7709582219'||props.mobile==='9158505121')?
@@ -25,11 +25,11 @@ const HeaderOne = (props) => {
 	      	  	  :
 	      	  	  null
 	      	  	}
-			    <li><a href="" onClick={props.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			    <li><a href="/#" onClick={props.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			  </ul>
 	      	</li>
 	      	:
-	      	<li><a className="nav-link1" href="#" data-toggle="modal" data-target="#loginModal"><span className="glyphicon glyphicon-user"></span> Login/Register</a></li>
+	      	<li><a className="nav-link1" href="/#" data-toggle="modal" data-target="#loginModal"><span className="glyphicon glyphicon-user"></span> Login/Register</a></li>
 	      }
 	    </ul>
 	  </div>

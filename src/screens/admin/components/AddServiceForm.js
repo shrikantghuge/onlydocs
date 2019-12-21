@@ -5,8 +5,8 @@ import axios from 'axios';
 import validate from 'jquery-validation';
 import $ from "jquery";
 import swal from 'sweetalert';
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+// import ReactTable from "react-table";
+// import "react-table/react-table.css";
 class AddServiceForm extends Component {
   constructor(props) {
     super(props);
@@ -90,7 +90,7 @@ class AddServiceForm extends Component {
       [name]: value,
     });
 
-    if(name=='serviceName'){
+    if(name==='serviceName'){
       var id =  $(event.currentTarget).find('option:selected').attr('data-id')
       this.setState({
         serviceId : id
@@ -118,7 +118,7 @@ class AddServiceForm extends Component {
     .get('/api/get_serviceForm')
     .then((response)=> {
       if(response.data.status===200){
-        console.log('response.data',response.data)
+        // console.log('response.data',response.data)
         this.setState({
           serviceFormData: response.data.response
         })
@@ -159,7 +159,8 @@ class AddServiceForm extends Component {
             labelName: '', 
             mandatoryField: '-- Select --', 
           },()=>{
-          	swal('Service form fields added successfully!!');
+          	this.getServiceForm()
+            swal('Service form fields added successfully!!');
           })
         }
       })
@@ -182,17 +183,18 @@ class AddServiceForm extends Component {
         serviceId: this.state.serviceId,
         fieldId: this.state.editId
       }
-      console.log('formValues',formValues)
+      // console.log('formValues',formValues)
       axios
       .put('/api/update_serviceForm/'+id,formValues)
       .then((response)=> {
         if(response.data.status===200){
           this.getServiceData()
+          this.getServiceForm()
           swal('Service updated successfully!!');
           $('#editModal').modal('hide');
           $('.modal-backdrop').hide();
         }else{
-          console.log('response.',response)
+          // console.log('response.',response)
           swal('Something went wrong..Please try again!!');
         }
       })
@@ -207,6 +209,7 @@ class AddServiceForm extends Component {
     axios
     .delete('/api/delete_serviceForm/'+id)
     .then((response)=> {
+      console.log('response',response)
       if(response.data.status===200){
         this.getServiceData()
         swal('Service deleted successfully!!');
@@ -223,7 +226,7 @@ class AddServiceForm extends Component {
   handleEditBtn(event){
     event.preventDefault();
     var editId = $(event.currentTarget).attr('data-ID');
-    var serviceId = $(event.currentTarget).attr('data-serviceId');
+    var serviceId = $(event.currentTarget).attr('data-serviceid');
     var newArray = this.state.serviceFormData.filter(function (el) {
       return el.data.ID === editId
     });
@@ -248,54 +251,54 @@ class AddServiceForm extends Component {
   }
 
   render() {
-    function filterCaseInsensitive(filter, row) {
-      const id = filter.pivotId || filter.id;
-      if (row[id] !== null) {
-        return (
-          row[id] !== undefined ?
-            String(row[id].toString().toLowerCase())
-            .includes(filter.value.toString().toLowerCase())
-          :
-            true
-        );
-      }
-    }
-    var dataArray = [];
-    var headers = [
-      {Header:"Sr No.",accessor: 'srno',sortable: false},
-      {Header:"Service Name",accessor: 'serviceName',filterable: true},
-      {Header:"Label Name", accessor: 'labelName',filterable: true},
-      {Header:"Field Name", accessor: 'fieldName',filterable: true},
-      {Header:"Type", accessor: 'type',filterable: true},
-      {Header:"Option", accessor: 'option',sortable: false},
-      {Header:"Mandatory", accessor: 'mandatory',filterable: true},
-      {Header:"Sequence No", accessor: 'sequence',filterable: true},
-      {Header:"Actions", accessor: 'action',sortable: false},
-    ];
+    // function filterCaseInsensitive(filter, row) {
+    //   const id = filter.pivotId || filter.id;
+    //   if (row[id] !== null) {
+    //     return (
+    //       row[id] !== undefined ?
+    //         String(row[id].toString().toLowerCase())
+    //         .includes(filter.value.toString().toLowerCase())
+    //       :
+    //         true
+    //     );
+    //   }
+    // }
+    // var dataArray = [];
+    // var headers = [
+    //   {Header:"Sr No.",accessor: 'srno',sortable: false},
+    //   {Header:"Service Name",accessor: 'serviceName',filterable: true},
+    //   {Header:"Label Name", accessor: 'labelName',filterable: true},
+    //   {Header:"Field Name", accessor: 'fieldName',filterable: true},
+    //   {Header:"Type", accessor: 'type',filterable: true},
+    //   {Header:"Option", accessor: 'option',sortable: false},
+    //   {Header:"Mandatory", accessor: 'mandatory',filterable: true},
+    //   {Header:"Sequence No", accessor: 'sequence',filterable: true},
+    //   {Header:"Actions", accessor: 'action',sortable: false},
+    // ];
 
-    if(this.state.serviceFormData&&this.state.serviceFormData.length>0){
-      this.state.serviceFormData.map((data,index)=>{
-        dataArray.push({
-          "srno"          : index+1,
-          "serviceName"   : data.serviceName+' ('+data.serviceId+')',
-          "fieldName"     : data.data.NAME,
-          "labelName"     : data.data.LABEL,
-          "mandatory"     : data.mandatory,
-          "sequence"      : data.data.SEQUENCENO,
-          "type"          : data.data.TYPE?data.data.TYPE:'-',
-          "option"        : data.data.OPTION?data.data.OPTION:'-',
-          "action"        : <div>
-            <a className="" href="#" data-toggle="modal" data-target="#editModal" data-id={data.data.ID} data-serviceId={data.serviceId} onClick={this.handleEditBtn.bind(this)} >
-              <i className="glyphicon glyphicon-edit"></i>
-            </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <a className="" href="#" data-toggle="modal" data-target="#deleteModal" data-id={data.data.ID} onClick={this.handleDeleteBtn.bind(this)}>
-              <i className="glyphicon glyphicon-trash"></i>
-            </a>
-          </div>
-        })
-      }) 
-    }
+    // if(this.state.serviceFormData&&this.state.serviceFormData.length>0){
+    //   this.state.serviceFormData.map((data,index)=>{
+    //     dataArray.push({
+    //       "srno"          : index+1,
+    //       "serviceName"   : data.serviceName+' ('+data.serviceId+')',
+    //       "fieldName"     : data.data.NAME,
+    //       "labelName"     : data.data.LABEL,
+    //       "mandatory"     : data.mandatory,
+    //       "sequence"      : data.data.SEQUENCENO,
+    //       "type"          : data.data.TYPE?data.data.TYPE:'-',
+    //       "option"        : data.data.OPTION?data.data.OPTION:'-',
+    //       "action"        : <div>
+    //         <a className="" href="/#" data-toggle="modal" data-target="#editModal" data-id={data.data.ID} data-serviceid={data.serviceId} onClick={this.handleEditBtn.bind(this)} >
+    //           <i className="glyphicon glyphicon-edit"></i>
+    //         </a>
+    //         &nbsp;&nbsp;&nbsp;&nbsp;
+    //         <a className="" href="/#" data-toggle="modal" data-target="#deleteModal" data-id={data.data.ID} onClick={this.handleDeleteBtn.bind(this)}>
+    //           <i className="glyphicon glyphicon-trash"></i>
+    //         </a>
+    //       </div>
+    //     })
+    //   }) 
+    // }
     return(
   	  <React.Fragment>
   	  	<h4 className="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">Add Service Form Fields</h4>
@@ -361,99 +364,102 @@ class AddServiceForm extends Component {
       		  </div>
           </div>
     		</form>
-        <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-          <ReactTable data={dataArray} columns={headers} defaultPageSize={5} className="-striped" defaultFilterMethod={filterCaseInsensitive} />
-          <div className="modal fade" id="editModal" role="dialog">
-            <div className="modal-dialog">
-              <div className="modal-content row">
-                <div className="modal-header form-group">
-                  <h4 className="pull-left modal-title">Edit Service Form</h4>
-                  <button type="button" className="close pull-right" data-dismiss="modal">&times;</button>
-                </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <form id="editServiceForm" className="row">
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
-                      <label>Service Name:</label>
-                      <select className="form-control" id="editServiceName" name="editServiceName" value={this.state.editServiceName+' ('+this.state.serviceId+')'} onChange={this.handleChange}>
-                        <option disabled selected={true}>-- Select --</option>
-                        {this.state.serviceData && this.state.serviceData.length > 0?
-                          this.state.serviceData.map((data,index)=>{
-                            return(
-                              <option value={data.NAME+' ('+data.ID+')'} key={index+data.ID}>
-                                {data.NAME+' ('+data.ID+')'}
-                              </option>  
-                            )
-                          })
-                        :
-                        null}
-                      </select>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
-                      <label>Field Name:</label>
-                      <select className="form-control" id="editFieldName" name="editFieldName" value={this.state.editFieldName} onChange={this.handleChange}>
-                        <option disabled selected={true}>-- Select --</option>
-                        <option>input</option>
-                        <option>select</option>
-                        <option>textarea</option>
-                      </select>
-                    </div>
-                    {
-                      this.state.editFieldName === 'input'?
-                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
-                        <label>Type:</label>
-                        <input type="text" className="form-control" id="editType" name="editType" placeholder="Enter Input Type" value={this.state.editType} onChange={this.handleChange} />
-                      </div>
-                      :this.state.editFieldName === 'select'?
-                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
-                        <label>Option:</label>
-                        <input type="text" className="form-control" id="editOption" name="editOption" placeholder="Enter Select Option" value={this.state.editOption} onChange={this.handleChange} />
-                      </div>
-                      :
-                      null
-                    }
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
-                      <label>Label Name:</label>
-                      <input type="text" className="form-control" id="editLabelName" name="editLabelName" placeholder="Enter Label Name" value={this.state.editLabelName} onChange={this.handleChange} />
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
-                      <label>Mandatory:</label>
-                      <select className="form-control" id="editMandatoryField" name="editMandatoryField" value={this.state.editMandatoryField} onChange={this.handleChange}>
-                        <option disabled selected={true}>-- Select --</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                      <label>Sequence Number:</label>
-                      <input type="number" className="form-control" id="editSequenceNo" name="editSequenceNo" placeholder="Enter Sequence Number" value={this.state.editSequenceNo} onChange={this.handleChange} />
-                    </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group">
-                      <button type="button" className="modal-btn btn pull-right" data-id={this.state.editId} onClick={this.handleUpdate.bind(this)}>Update</button>
-                    </div>
-                  </form>                         
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="modal fade" id="deleteModal" role="dialog">
-            <div className="modal-dialog">
-              <div className="modal-content row">
-                <div className="modal-header form-group">
-                  <h4 className="pull-left modal-title">Delete Service Form</h4>
-                  <button type="button" className="close pull-right" data-dismiss="modal">&times;</button>
-                </div>
-                <div className="">
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <p><b>Are you sure you want to delete this Service Form?</b></p>
+        {/*
+          *********if api for update and delete is working uncomment this********
+          <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+            <ReactTable data={dataArray} columns={headers} defaultPageSize={5} className="-striped" defaultFilterMethod={filterCaseInsensitive} />
+            <div className="modal fade" id="editModal" role="dialog">
+              <div className="modal-dialog">
+                <div className="modal-content row">
+                  <div className="modal-header form-group">
+                    <h4 className="pull-left modal-title">Edit Service Form</h4>
+                    <button type="button" className="close pull-right" data-dismiss="modal">&times;</button>
                   </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
-                    <button type="button" className="btn modal-btn pull-right" data-id={this.state.deleteId} onClick={this.handleDelete.bind(this)}>Delete</button>
-                  </div>                                   
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <form id="editServiceForm" className="row">
+                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+                        <label>Service Name:</label>
+                        <select className="form-control" id="editServiceName" name="editServiceName" value={this.state.editServiceName+' ('+this.state.serviceId+')'} onChange={this.handleChange}>
+                          <option disabled selected={true}>-- Select --</option>
+                          {this.state.serviceData && this.state.serviceData.length > 0?
+                            this.state.serviceData.map((data,index)=>{
+                              return(
+                                <option value={data.NAME+' ('+data.ID+')'} key={index+data.ID}>
+                                  {data.NAME+' ('+data.ID+')'}
+                                </option>  
+                              )
+                            })
+                          :
+                          null}
+                        </select>
+                      </div>
+                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+                        <label>Field Name:</label>
+                        <select className="form-control" id="editFieldName" name="editFieldName" value={this.state.editFieldName} onChange={this.handleChange}>
+                          <option disabled selected={true}>-- Select --</option>
+                          <option>input</option>
+                          <option>select</option>
+                          <option>textarea</option>
+                        </select>
+                      </div>
+                      {
+                        this.state.editFieldName === 'input'?
+                        <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+                          <label>Type:</label>
+                          <input type="text" className="form-control" id="editType" name="editType" placeholder="Enter Input Type" value={this.state.editType} onChange={this.handleChange} />
+                        </div>
+                        :this.state.editFieldName === 'select'?
+                        <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+                          <label>Option:</label>
+                          <input type="text" className="form-control" id="editOption" name="editOption" placeholder="Enter Select Option" value={this.state.editOption} onChange={this.handleChange} />
+                        </div>
+                        :
+                        null
+                      }
+                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+                        <label>Label Name:</label>
+                        <input type="text" className="form-control" id="editLabelName" name="editLabelName" placeholder="Enter Label Name" value={this.state.editLabelName} onChange={this.handleChange} />
+                      </div>
+                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+                        <label>Mandatory:</label>
+                        <select className="form-control" id="editMandatoryField" name="editMandatoryField" value={this.state.editMandatoryField} onChange={this.handleChange}>
+                          <option disabled selected={true}>-- Select --</option>
+                          <option>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </div>
+                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <label>Sequence Number:</label>
+                        <input type="number" className="form-control" id="editSequenceNo" name="editSequenceNo" placeholder="Enter Sequence Number" value={this.state.editSequenceNo} onChange={this.handleChange} />
+                      </div>
+                      <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group">
+                        <button type="button" className="modal-btn btn pull-right" data-id={this.state.editId} onClick={this.handleUpdate.bind(this)}>Update</button>
+                      </div>
+                    </form>                         
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="modal fade" id="deleteModal" role="dialog">
+              <div className="modal-dialog">
+                <div className="modal-content row">
+                  <div className="modal-header form-group">
+                    <h4 className="pull-left modal-title">Delete Service Form</h4>
+                    <button type="button" className="close pull-right" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div className="">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <p><b>Are you sure you want to delete this Service Form?</b></p>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                      <button type="button" className="btn modal-btn pull-right" data-id={this.state.deleteId} onClick={this.handleDelete.bind(this)}>Delete</button>
+                    </div>                                   
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        */}
   	  </React.Fragment>
   	) 
   }

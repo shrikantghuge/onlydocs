@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserMarkup = ({}) => {
+const UserMarkup = () => {
   return (
     <div>User</div>
   );

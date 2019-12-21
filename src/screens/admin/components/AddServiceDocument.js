@@ -44,7 +44,7 @@ class AddServiceDocument extends Component {
       [name]: value,
     });
 
-    if(name=='serviceName'){
+    if(name==='serviceName'){
       var id =  $(event.currentTarget).find('option:selected').attr('data-id')
       this.setState({
         serviceId : id

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const FooterOne= ({}) => {
+const FooterOne= () => {
   return (
-    <div>Home</div>
+    <React.Fragment></React.Fragment>
   );
 };
 

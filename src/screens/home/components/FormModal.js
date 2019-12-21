@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+//import 'bootstrap/dist/js/bootstrap.min.js';
 import axios from 'axios';
 import validate from 'jquery-validation';
 import $ from "jquery";
@@ -19,6 +19,7 @@ class FormModal extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount(){
+    // console.log('true')
     $("#form").validate({
       rules: {
         // mobile: {
@@ -28,8 +29,15 @@ class FormModal extends Component {
     });
   }
   componentDidUpdate(prevProps){
-    if((prevProps.serviceId!=this.props.serviceId)&&this.props.serviceId){
+    // console.log('prevProps',prevProps,this.props)
+    if((prevProps.serviceId!==this.props.serviceId)&&this.props.serviceId){
       this.getServiceDataById(this.props.serviceId)
+      this.setState({
+        serviceDataById: {
+          formData : [],
+          docData : [],
+        }
+      })
     }
   }
   handleChange(event){
@@ -89,24 +97,29 @@ class FormModal extends Component {
   handleSubmit(event){
     event.preventDefault();
     if($('#form').valid()){
-      // var formValues= {
-      //   mobile:this.state.mobile,
-      //   status:'Blocked', 
-      //   otp: Math.floor(1000 + Math.random() * 9000)
-      // }
-      // axios
-      // .post('/api/create_user',formValues)
-      // .then((response)=> {
-      //   if(response.status===200){
-      //     this.setState({
-      //       recentOtp: formValues.otp, 
-      //       'showLogin' : false
-      //     })
-      //   }
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
+      var formData = this.state.serviceDataById.formData
+      if(formData&&formData.length>0){
+        for (var i = 0; i < formData.length; i++) {
+          var formValues= {
+            serviceId:this.props.serviceId,
+            fieldName:formData.LABEL, 
+            fieldValue:this.state[formData.SEQUENCENO]
+          }
+          axios
+          .post('/api/add_serviceForm',formValues)
+          .then((response)=> {
+            // if(response.status===200){
+            //   this.setState({
+            //     recentOtp: formValues.otp, 
+            //     'showLogin' : false
+            //   })
+            // }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }
+      }
     }
   }
 
@@ -121,12 +134,16 @@ class FormModal extends Component {
             </div>
             <div className="modal-body form-modalBody" id="modalBody">
               {
-                (this.state.serviceDataById&&this.state.serviceDataById.formData.length>0
-                  &&this.state.serviceDataById.docData.length>0)?
+                (this.state.serviceDataById&&(this.state.serviceDataById.formData.length>0
+                  ||this.state.serviceDataById.docData.length>0))?
                   <div className="row">
                     <React.Fragment>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label>Required Documents :</label>
+                        {this.state.serviceDataById.docData.length>0?
+                          <label>Required Documents :</label>
+                          :
+                          null
+                        }
                         {this.state.serviceDataById.docData.map((data,index)=>{
                           return(
                             <p key={data.ID+index}>

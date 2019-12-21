@@ -15,10 +15,10 @@ const Header = (props) => {
 	      {
 	      	props.token?
 	      	<li className="dropdown">
-	      	  <a className="adminnav-link dropdown-toggle" href="#" data-toggle="dropdown"><span className="glyphicon glyphicon-user"></span> Logged In as Admin</a>
+	      	  <a className="adminnav-link dropdown-toggle" href="/#" data-toggle="dropdown"><span className="glyphicon glyphicon-user"></span> Logged In as Admin</a>
 	      	  <ul className="dropdown-menu user-dropdown">
 			    <li><Link to="/"><span className="glyphicon glyphicon-home"></span> Homepage</Link></li>
-			    <li><a href="" onClick={props.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			    <li><a href="/#" onClick={props.logout}><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			  </ul>
 	      	</li>
 	      	:

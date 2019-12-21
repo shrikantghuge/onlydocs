@@ -6,7 +6,7 @@ class Footer extends Component {
   render() {
     return(
 	  <footer>
-	    {/*<FooterOne />*/}
+	    <FooterOne />
 		<FooterTwo />
 	  </footer>
 	) 
