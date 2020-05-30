@@ -1,0 +1,33 @@
+.navbar1,.navbar2{margin-bottom: 0px;border: none;}
+.nav-back1{background-color: #f5f5f5;padding: 5px 15px;}
+.nav-link1{color: #696973} 
+.nav-link1:hover,.nav-link1:focus,.nav-link1.dropdown-toggle{color: #0d52d6;
+background: transparent!important;outline: none;} 
+.logo-name{font-size: 32px;font-weight: bolder;color: #000;letter-spacing: 4px}
+.logo-name:hover,.logo-name:focus{color: #000}
+.nav-back2{background-color: #0d52d6;}
+.nav-link2{color: #fff;text-transform: uppercase;} 
+.nav-link2:hover,.nav-link2:focus{color: #000;
+background-color: #fed430!important} 
+.footer-div2{background-color: #3a4754;color: #8b9198;padding: 25px 30px}
+.img-htwt img{width: 100%;}
+.img-htwt{height: 400px!important;}
+.service-head{font-weight: bolder;margin: 30px 0px}
+.serviceBlock-head{margin-top: 10px;margin-bottom: 20px;color: #000}
+.service-div{margin-bottom: 30px}
+.serviceBlock-div{text-decoration: none!important;}
+.serviceBlock-div:hover div.glyphicon,.serviceBlock-div:focus div.glyphicon{
+color: #fed430;}
+.serviceBlock-div:hover,.serviceBlock-div:focus{box-shadow: 0px 0px 12px;}
+.serviceBlock-div div.glyphicon{font-size: 72px;color: #0d52d6;padding: 15px}
+.serviceBlock-div p{color: #000}
+.login-btn{background-color: #0d52d6;color: #fff;width: 100%;font-weight: 700}
+.login-btn:hover,.login-btn:focus{background-color: #fed430;color: #000;
+outline: none;border:1px solid #fed430;}
+label.error{color: red}
+.swal-button:not([disabled]):hover,.swal-button:active,.swal-button{background-color: #0d52d6}
+.user-dropdown{padding: 5px;}
+.user-dropdown a:hover,.user-dropdown a:focus{background-color: #fed430!important;}
+.nav .open>a.adminnav-link, .nav .open>a.adminnav-link:focus, .nav .open>a.adminnav-link:hover{
+background-color: transparent!important;}
+.form-modalBody{max-height: 40em;overflow-y: auto;}
