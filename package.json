@@ -7,7 +7,7 @@
     "babel": "^6.23.0",
     "bootstrap": "^3.4.1",
     "jquery": "^3.4.1",
-    "jquery-validation": "^1.19.1",
+    "jquery-validation": "^1.19.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
